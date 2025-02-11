@@ -35,7 +35,7 @@ function ForgotPassword() {
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <div className="input-wrapper">
-              <Mail size={20} />
+              {/* <Mail size={20} /> */}
               <input
                 id="email"
                 type="email"

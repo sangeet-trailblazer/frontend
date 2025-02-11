@@ -67,7 +67,7 @@ function Dashboard() {
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <div className="input-wrapper">
-              <User size={20} />
+              {/* <User size={20} /> */}
               <input
                 id="username"
                 type="text"
@@ -82,7 +82,7 @@ function Dashboard() {
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <div className="input-wrapper">
-              <Lock size={20} />
+              {/* <Lock size={20} /> */}
               <input
                 id="password"
                 type="password"

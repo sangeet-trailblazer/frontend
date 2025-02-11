@@ -1,0 +1,98 @@
+.patient-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.patient-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.patient-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't affect width calculation */
+}
+
+/* Allow cards to grow in larger screens */
+@media (min-width: 1024px) {
+  .patient-card {
+    flex: 1 1 calc(33.33% - 30px); /* Cards take 1/3 of the screen minus the gap between them */
+  }
+}
+
+/* Hover effect for the cards */
+.patient-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Header styling (name + avatar) */
+.patient-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.patient-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.patient-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0056b3;
+}
+
+/* Info section with rows for age, occupation, and recent visit */
+.patient-card-info .info-row {
+  margin-bottom: 10px;
+}
+
+.patient-card-info .info-row span {
+  font-size: 14px;
+  color: #444;
+}
+
+/* Footer styling (view details) */
+.patient-card-footer {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.view-details {
+  font-weight: 600;
+  color: #0056b3;
+  cursor: pointer;
+}
+
+.view-details:hover {
+  color: #003d80;
+}
+
+/* Optional: Mobile responsiveness */
+@media (max-width: 768px) {
+  .patient-card {
+    max-width: 100%;
+  }
+
+  .patient-list {
+    flex-direction: column;
+  }
+}
