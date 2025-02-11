@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseURL = 'http://localhost:8000';
+const baseURL = 'https://ai-backend-owov.onrender.com';
 // Create an Axios instance
 const axiosInstance = axios.create({
   baseURL,  // Your backend base URL
@@ -40,7 +40,7 @@ axiosInstance.interceptors.response.use(
       console.log(refreshToken);
       if (refreshToken) {
         try {
-          const refreshResponse = await axios.post('http://localhost:8000/token/refresh/', {refresh: refreshToken });
+          const refreshResponse = await axios.post('https://ai-backend-owov.onrender.com/token/refresh/', {refresh: refreshToken });
           console.log(refreshResponse);
           if (refreshResponse.status === 200) {
             const newAccessToken = refreshResponse.data.access;
