@@ -5,7 +5,7 @@ import './Home.css';
 import axiosInstance from '../Interceptor';
 import PatientForm from '../AddPatient/PatientForm'; // Import your patient form component (to be created)
 import PatientGrid from '../AddPatient/PatientGrid'; 
-import '../AddPatient/Patientstyle.css';
+import '../AddPatient/PatientStyle.css';
 import axios from 'axios';
 
 function Dashboard() {
