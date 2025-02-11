@@ -1,7 +1,7 @@
 
 import React,{useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
-import Dashboard from './Components/Dashboard/dashboard';
+import Dashboard from './Components/Dashboard/Dashboard';
 import PatientDashboard from './Components/PatientDashboard/PatientDashboard';
 import Home from './Components/Home/Home';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
