@@ -29,7 +29,7 @@ function Dashboard() {
   // Fetch patients from API
   const fetchPatients = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/patients/'); // Adjust the URL to your API endpoint
+      const response = await axios.get('https://ai-backend-owov.onrender.com/api/patients/'); // Adjust the URL to your API endpoint
       if (response.data) {
         setPatients(response.data); // Assuming the response is an array of patient objects
       }
