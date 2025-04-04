@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 
 
  function PatientDashboard({toggleSidePanel,setPatientParagraph }) {
-   const { patientId } = useParams();
+   const { CrNo } = useParams();
    const [response, setResponse] = useState('');
    const [isEditing, setIsEditing] = useState(false);
    const [patientInfo, setPatientInfo] = useState({
@@ -87,7 +87,7 @@ import { format } from 'date-fns';
    useEffect(() => {
      // Fetch patient information
      
-     axios.get(`https://ai-backend-owov.onrender.com/api/patients/${patientId}/`)
+     axios.get(`http://127.0.0.1:8000api/patients/${CrNo}/`)
        .then((response) => {
          const patientData = response.data;
          setPatientInfo(prev => ({
@@ -103,7 +103,7 @@ import { format } from 'date-fns';
        });
  
      // Fetch medical history for patient 102
-     axios.get(`https://ai-backend-owov.onrender.com/api/medical-history/${patientId}/`)
+     axios.get(`http://127.0.0.1:8000/api/medical-history/${CrNo}/`)
      .then((response) => {
        const medicalHistoryData = response.data;
        setPatientInfo(prev => ({
@@ -120,7 +120,7 @@ import { format } from 'date-fns';
        });
  
      // Fetch blood reports for patient 102
-     axios.get(`https://ai-backend-owov.onrender.com/api/blood-reports/${patientId}/`)
+     axios.get(`http://127.0.0.1:8000/api/blood-reports/${CrNo}/`)
        .then((response) => {
          setPatientInfo(prev => ({
            ...prev,
@@ -132,7 +132,7 @@ import { format } from 'date-fns';
        });
  
      // Fetch current symptoms for patient 102
-     axios.get(`https://ai-backend-owov.onrender.com/api/current-symptoms/${patientId}/`)
+     axios.get(`http://127.0.0.1:8000/api/current-symptoms/${CrNo}/`)
        .then((response) => {
          setPatientInfo(prev => ({
            ...prev,

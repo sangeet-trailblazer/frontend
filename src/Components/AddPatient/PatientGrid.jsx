@@ -5,9 +5,9 @@ import { User, Calendar, Briefcase } from 'lucide-react';
 function PatientGrid({ patients }) {
   const navigate = useNavigate(); // Hook to navigate to another route
 
-  const handleClick = (patientId) => {
+  const handleClick = (CrNo) => {
     // Navigate to the '/sdasgef' page on click
-    navigate(`/pdash/${patientId}`);
+    navigate(`/pdash/${CrNo}`);
   };
   
   return (
@@ -15,7 +15,7 @@ function PatientGrid({ patients }) {
       {patients.length > 0 ? (
         <div className="patient-list">
           {patients.map((patient) => (
-            <div key={patient.Patientid} className="patient-card" onClick={() => handleClick(patient.Patientid)}>
+            <div key={patient.CrNo} className="patient-card" onClick={() => handleClick(patient.CrNo)}>
               <div className="patient-card-header">
                 <img
                   src={`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(patient.Name)}`}

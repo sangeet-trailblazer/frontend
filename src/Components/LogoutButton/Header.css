@@ -1,0 +1,32 @@
+/* App.css */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #409fe7;
+    color: white;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logout-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    border-radius: 12px;
+    background-color: #2fd3cb;
+    transition: background-color 0.3s ease;
+  }
+  .logout-container {
+    margin-left: auto; /* Pushes the button to the far right */
+  }

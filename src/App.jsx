@@ -6,6 +6,9 @@ import PatientDashboard from './Components/PatientDashboard/PatientDashboard';
 import Home from './Components/Home/Home';
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword';
 import SidePanel from "./Components/PatientDashboard/SidePanel";
+import AdminDashboard from './Components/Admin/AdminDashboard';
+import DoctorDashboard from './Components/Doctor/DoctorDashboard';
+
 const App = () => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [patientParagraph, setPatientParagraph] = useState("");
@@ -24,7 +27,9 @@ const App = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/home" element={<Home />} />
         <Route path="/pdash" element={<PatientDashboard />} />
-        <Route path="/pdash/:patientId" element={<PatientDashboard toggleSidePanel={toggleSidePanel} setPatientParagraph={setPatientParagraph}/>} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+        <Route path="/pdash/:CrNo" element={<PatientDashboard toggleSidePanel={toggleSidePanel} setPatientParagraph={setPatientParagraph}/>} />
       </Routes>
       </div>
     </BrowserRouter>

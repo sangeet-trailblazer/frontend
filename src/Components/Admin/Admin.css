@@ -1,0 +1,77 @@
+/* Admin Dashboard specific styles */
+.admin-dashboard {
+  background-color: #f8fafc;
+}
+
+.admin-card {
+  border-left: 4px solid #4299e1;
+  transition: all 0.3s ease;
+  background-color: white;
+  border-radius: 8px; /* Slightly smaller rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slightly smaller shadow */
+  padding: 16px; /* Reduced padding inside the card */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+  height: 250px; /* Added a fixed height to reduce vertical space */
+  overflow: hidden; 
+  width: 100%;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.admin-icon {
+  color: #4299e1;
+}
+
+.admin-title {
+  color: #2c5282;
+}
+
+.admin-description {
+  color: #4a5568;
+}
+
+/* Admin form modal styles */
+.admin-modal {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.admin-modal-content {
+  border-top: 4px solid #4299e1;
+  max-width: 32rem;
+}
+
+.admin-modal-header {
+  background-color: #ebf8ff;
+}
+
+.admin-button {
+  background-color: #4299e1;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.admin-button:hover {
+  background-color: #3182ce;
+}
+
+
+
+/* Dashboard.css */
+
+/* Container for the dashboard cards */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Creates flexible grid columns */
+  gap: 20px; /* Adds space between the cards */
+  justify-items: center; /* Centers items horizontally */
+  max-width: 1300px; /* Optional: limits the maximum width */
+  margin: 0 auto; /* Centers the container */
+  padding: 10px; /* Optional: adds padding to the container */
+}

@@ -1,0 +1,32 @@
+.dashboard-card {
+    background-color: white;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-card-content {
+    padding: 1.5rem;
+  }
+  
+  .dashboard-card-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dashboard-card-title {
+    margin-left: 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  
+  .dashboard-card-description {
+    margin-top: 1rem;
+    color: #4a5568;
+  }
