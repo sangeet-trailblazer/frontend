@@ -85,21 +85,42 @@
     }
   }
   
+  /* this is for content */
   .content-box {
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    background-color: rgb(236, 236, 236);
     padding: 1.5rem;
+    padding-bottom: 3rem; 
   }
   
   .content-title {
     font-size: 1.125rem;
     font-weight: 500;
-    color: #111827;
+    color: #040915;
     margin-bottom: 1rem;
   }
   
   .content-text {
-    color: #6b7280;
+    color: #234da2;
     line-height: 1.5;
   }
+/*Search Input CSS */
+.header-with-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  flex-wrap: wrap;
+  gap: 16px;
+  background-color: #f9f9f9; /* Optional subtle background */
+  border-bottom: 1px solid #eee;
+}
+
+.search-input {
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1.9px solid #049bff;
+  border-radius: 6px;
+  max-width: 300px;
+  flex: 1;
+}
+

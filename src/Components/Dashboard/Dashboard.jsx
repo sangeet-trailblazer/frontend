@@ -30,8 +30,11 @@ function Dashboard() {
       if (response.data.success) {
         const { access, refresh } = response.data.authenticated_user;
         const userRole = response.data.authenticated_user.role; // Get role from response
+        const usernamee= response.data.authenticated_user.first_name;
+        localStorage.setItem('username', usernamee);
         console.log('hi printing role');
         console.log(userRole);
+        console.log(usernamee);
         localStorage.setItem('access_token', access);
         localStorage.setItem('refresh', refresh);
         localStorage.setItem('role', userRole); // Store role in local storage

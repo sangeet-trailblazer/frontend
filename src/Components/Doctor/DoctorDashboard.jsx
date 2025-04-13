@@ -3,14 +3,16 @@ import { Settings, Users, BarChart } from 'lucide-react';
 import DashboardCard from '../../styles/DashboardCard';
 import UserManagementForm from '../Forms/AddDoctor';
 import '../Admin/Admin.css';
+import AddOldPatients from '../Forms/AddOldPatient';
 import Header from '../LogoutButton/LogoutHeader';
-
-
-
+import AddPatients from '../Forms/AddNewPatient';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../Footer/Footer';
 const AdminDashboard = () => {
   const [showUserManagement, setShowUserManagement] = useState(false);
-  const [showSystemSettings, setShowSystemSettings] = useState(false);
-  const [showAnalytics, setShowAnalytics] = useState(false);
+  const [showAddOldPatients, setShowAddOldPatients] = useState(false);
+  const [showAddPatients, setShowAddPatients] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -22,49 +24,34 @@ const AdminDashboard = () => {
         title="Patients Under You"
         icon={<Users className="h-8 w-8 admin-icon" />}
         description="View patients who are referring you."
-        onClick={() => setShowUserManagement(true)}
+        onClick={() => navigate('/home')}
         className="admin-card"
       />
       <DashboardCard
         title="Add New Patient"
         icon={<Users className="h-8 w-8 admin-icon" />}
         description="Add new cases to the physiotherapy department."
-        onClick={() => setShowSystemSettings(true)}
+        onClick={() => setShowAddPatients(true)}
         className="admin-card"
       />
       <DashboardCard
         title="Add Old Cases"
         icon={<BarChart className="h-8 w-8 admin-icon" />}
         description="Iterate old cases to see their progress."
-        onClick={() => setShowAnalytics(true)}
+        onClick={() => setShowAddOldPatients(true)}
         className="admin-card"
       />
       </div>
-
+      {showAddPatients && (
+              <AddPatients onClose={() => setShowAddPatients(false)} />
+            )}
       {showUserManagement && (
         <UserManagementForm onClose={() => setShowUserManagement(false)} />
       )}
-      {/* {showSystemSettings && (
-        <SystemSettingsForm onClose={() => setShowSystemSettings(false)} />
-      )} */}
-      {/* {showAnalytics && (
-        <div className="admin-modal fixed inset-0 flex items-center justify-center">
-          <div className="admin-modal-content bg-white rounded-lg shadow-xl">
-            <div className="admin-modal-header p-4 flex justify-between items-center">
-              <h2 className="admin-title text-xl font-semibold">Analytics Dashboard</h2>
-              <button 
-                className="text-gray-500 hover:text-gray-700"
-                onClick={() => setShowAnalytics(false)}
-              >
-                <X size={24} />
-              </button>
-            </div>
-            <div className="p-6">
-              <p className="admin-description">Analytics dashboard content goes here...</p>
-            </div>
-          </div>
-        </div>
-      )} */}
+      {showAddOldPatients && (
+              <AddOldPatients onClose={() => setShowAddOldPatients(false)} />
+            )}
+      <Footer/>
       </div>
     // {/* </main> */}
     // </div>

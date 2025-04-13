@@ -155,3 +155,40 @@ const AddPatients = ({ onClose }) => {
   };
   
   export default AddPatients;
+
+
+  // if (fetchResponse.data) {
+  //   if (fetchResponse.data) {
+  //       setData(fetchResponse.data);
+  //       localStorage.setItem('FollowUpCount',fetchResponse.data[0].Followup);
+  //       console.log('folow up is :', localStorage.getItem('FollowUpCount'));
+  //       console.log(fetchResponse.data[0].Followup);
+  //       console.log('Full fetch response:', fetchResponse.data)
+
+
+  //   //     localStorage.setItem('FollowUpCount',fetchresponse.data.Followup);
+  //   // console.log('folow up is :', localStorage.getItem('FollowUpCount'));
+  //   //     console.log(fetchresponse.data.Followup); // Assuming the response is an array of patient objects
+  //     }
+
+
+
+
+   //   const response = await axios.post(`${config.API_BASE_URL}/visits/`, jsonData,{ headers: {
+        //     'Content-Type': 'application/json', // Ensure content type is JSON
+        //   },});
+          
+        //   // Check if the request was successful
+        //   if (response.status === 201) {
+        //     console.log('Patient added successfully:', response.data);
+        //     alert('Patient has been successfully added!');
+        //   } else {
+        //     console.error('Failed to add Patient');
+        //     alert('Failed to add Patient');
+            
+        //   }
+        // } catch (error) {
+        //   alert('Something went wrong.Try again');
+          
+        //   console.error('Error during POST request:', error);
+        // }

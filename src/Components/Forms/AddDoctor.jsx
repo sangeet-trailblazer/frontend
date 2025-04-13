@@ -13,7 +13,8 @@ const UserManagementForm = ({ onClose }) => {
     fullname:'',
     username: '',
     role: 'Doctor',
-    password:''
+    password:'',
+    first_name:''
   });
   const [isModalOpen, setIsModalOpen] = useState(false); // Track modal open state
   const [modalMessage, setModalMessage] = useState(''); // Store modal message
@@ -93,6 +94,16 @@ const UserManagementForm = ({ onClose }) => {
               className="form-input"
               value={formData.username}
               onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label className="form-label">First Name</label>
+            <input
+              type="text"
+              className="form-input"
+              value={formData.first_name}
+              onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
               required
             />
           </div>

@@ -75,10 +75,18 @@
   }
   
   .dashboard-grid {
+    background-color: #ffffff;
+    /* border: 2px solid #cbd5e0; light gray-blue border */
+    border-radius: 8px; /* optional: soft rounded corners */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
+  
+  
   
   .card {
     background: white;

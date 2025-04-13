@@ -3,21 +3,22 @@ import { Settings, Users, BarChart } from 'lucide-react';
 import DashboardCard from '../../styles/DashboardCard';
 import UserManagementForm from '../Forms/AddDoctor';
 import AddPatients from '../Forms/AddNewPatient';
+import AddOldPatients from '../Forms/AddOldPatient';
 import './Admin.css';
 import Header from '../LogoutButton/LogoutHeader';
-
-
-
+import Footer from '../Footer/Footer';
 
 const AdminDashboard = () => {
   const [showUserManagement, setShowUserManagement] = useState(false);
-  const [showSystemSettings, setShowSystemSettings] = useState(false);
+  const [showAddOldPatients, setShowAddOldPatients] = useState(false);
   const [showAddPatients, setShowAddPatients] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <>
+    <Header></Header>
+    {/* <div className="min-h-screen bg-gray-100"> */}
     
-      <Header></Header>
+      
       <div className="dashboard-container">
       {/* <div className="admin-dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
       <DashboardCard
@@ -38,10 +39,11 @@ const AdminDashboard = () => {
         title="Add Old Cases"
         icon={<BarChart className="h-8 w-8 admin-icon" />}
         description="Iterate old cases to see their progress."
-        onClick={() => setShowAnalytics(true)}
+        onClick={() => setShowAddOldPatients(true)}
         className="admin-card"
       />
       </div>
+      {/* <Footer></Footer> */}
 
       {showUserManagement && (
         <UserManagementForm onClose={() => setShowUserManagement(false)} />
@@ -49,6 +51,10 @@ const AdminDashboard = () => {
       {showAddPatients && (
         <AddPatients onClose={() => setShowAddPatients(false)} />
       )}
+      {showAddOldPatients && (
+        <AddOldPatients onClose={() => setShowAddOldPatients(false)} />
+      )}
+      
       {/* {showAnalytics && (
         <div className="admin-modal fixed inset-0 flex items-center justify-center">
           <div className="admin-modal-content bg-white rounded-lg shadow-xl">
@@ -67,7 +73,9 @@ const AdminDashboard = () => {
           </div>
         </div>
       )} */}
-      </div>
+      {/* </div> */}
+      <Footer/>
+      </>
     // {/* </main> */}
     // </div>
   );

@@ -17,9 +17,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #4b0505;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(55, 255, 0, 0.1);
   padding: 20px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -61,6 +61,13 @@
 }
 
 /* Info section with rows for age, occupation, and recent visit */
+.patient-card-info {
+  padding: 16px; 
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  gap: 12px 10px; /* row-gap and column-gap */
+}
+
 .patient-card-info .info-row {
   margin-bottom: 10px;
 }
@@ -95,4 +102,27 @@
   .patient-list {
     flex-direction: column;
   }
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.pagination-controls button {
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border: 1.6px solid #0169d9;
+  color: #2d96d3;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
