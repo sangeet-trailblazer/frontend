@@ -182,7 +182,7 @@ function Dashboard() {
       <div className="content-wrapper">
         <div className="content-box header-with-search">
           <h2 className="content-title">
-            Patients consulting Dr. {doctorName} ({filteredPatients.length} total)
+             Total Number of Patients consulting Dr. {doctorName} are: {filteredPatients.length}
           </h2>
           <input
             type="text"

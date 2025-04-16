@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Settings, Users, BarChart } from 'lucide-react';
 import DashboardCard from '../../styles/DashboardCard';
 import UserManagementForm from '../Forms/AddDoctor';
@@ -7,15 +7,30 @@ import AddOldPatients from '../Forms/AddOldPatient';
 import './Admin.css';
 import Header from '../LogoutButton/LogoutHeader';
 import Footer from '../Footer/Footer';
+import WelcomePage from '../WelcomeName/Name';
+import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
   const [showUserManagement, setShowUserManagement] = useState(false);
   const [showAddOldPatients, setShowAddOldPatients] = useState(false);
   const [showAddPatients, setShowAddPatients] = useState(false);
-
-  return (
+ const username= localStorage.getItem('username');
+ const navigate = useNavigate();
+   useEffect(() => {
+      const userData = localStorage.getItem('refresh'); // or get from context/api
+      console.log(userData);
+      if (!userData) {
+            navigate('/'); // fallback or error route
+      }
+       
+    }, [navigate]);
+ 
+ return (
     <>
     <Header></Header>
+    
+    <WelcomePage></WelcomePage>
+    
     {/* <div className="min-h-screen bg-gray-100"> */}
     
       

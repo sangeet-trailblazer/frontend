@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Settings, Users, BarChart } from 'lucide-react';
 import DashboardCard from '../../styles/DashboardCard';
 import UserManagementForm from '../Forms/AddDoctor';
@@ -8,16 +8,25 @@ import Header from '../LogoutButton/LogoutHeader';
 import AddPatients from '../Forms/AddNewPatient';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
+import WelcomePage from '../WelcomeName/Name';
 const AdminDashboard = () => {
   const [showUserManagement, setShowUserManagement] = useState(false);
   const [showAddOldPatients, setShowAddOldPatients] = useState(false);
   const [showAddPatients, setShowAddPatients] = useState(false);
   const navigate = useNavigate();
-
+   useEffect(() => {
+      const userData = localStorage.getItem('refresh'); // or get from context/api
+      console.log(userData);
+      if (!userData) {
+            navigate('/'); // fallback or error route
+      }
+       
+    }, [navigate]);
   return (
     <div className="min-h-screen bg-gray-100">
     
       <Header></Header>
+      <WelcomePage></WelcomePage>
       <div className="dashboard-container">
       {/* <div className="admin-dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
       <DashboardCard
@@ -35,7 +44,7 @@ const AdminDashboard = () => {
         className="admin-card"
       />
       <DashboardCard
-        title="Add Old Cases"
+        title="Add Old Cases"// else, allow login form to be
         icon={<BarChart className="h-8 w-8 admin-icon" />}
         description="Iterate old cases to see their progress."
         onClick={() => setShowAddOldPatients(true)}

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { User, Lock, ArrowRight } from 'lucide-react';
+import React, { useEffect ,useState } from 'react';
 import './Dashboard.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import AdminDashboard from '../Admin/AdminDashboard';
-import DoctorDashboard from '../Doctor/DoctorDashboard';
+
 
 // import { getBaseUrl } from '../../config';
 
@@ -21,47 +19,76 @@ function Dashboard() {
       setError('Please fill in all fields');
       return;
     }
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login/', {
-        username,
-        password,
-      });
-
-      if (response.data.success) {
-        const { access, refresh } = response.data.authenticated_user;
-        const userRole = response.data.authenticated_user.role; // Get role from response
-        const usernamee= response.data.authenticated_user.first_name;
-        localStorage.setItem('username', usernamee);
-        console.log('hi printing role');
-        console.log(userRole);
-        console.log(usernamee);
-        localStorage.setItem('access_token', access);
-        localStorage.setItem('refresh', refresh);
-        localStorage.setItem('role', userRole); // Store role in local storage
-
-        setRole(userRole); // Update state with role
-        setError('');
-
-        // Redirect based on role
-        if (userRole === 'admin') {
-          navigate('/admin-dashboard');
-        } else if (userRole === 'doctor') {
-          navigate('/doctor-dashboard');
+    const usersData = localStorage.getItem('username');
+    if (!usersData) {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/api/login/', {
+          username,
+          password,
+        });
+  
+        if (response.data.success) {
+          const { access, refresh } = response.data.authenticated_user;
+          const userRole = response.data.authenticated_user.role; 
+          localStorage.setItem('role',userRole);// Get role from response
+          const usernamee= response.data.authenticated_user.first_name;
+          localStorage.setItem('username', usernamee);
+          console.log('hi printing role');
+          console.log(userRole);
+  
+          if (userRole === 'Admin') {
+            navigate('/admin-dashboard');
+          } else if (userRole === 'Doctor') {
+            navigate('/doctor-dashboard');
+          }
+          console.log(usernamee);
+          localStorage.setItem('access_token', access);
+          localStorage.setItem('refresh', refresh);
+          localStorage.setItem('role', userRole); // Store role in local storage
+  
+          setRole(userRole); // Update state with role
+          setError('');
+  
+          // Redirect based on role
+          
+        } else {
+          setError(response.data.message || 'Login failed. Please check your credentials.');
         }
-      } else {
-        setError(response.data.message || 'Login failed. Please check your credentials.');
-      }
-    } catch (err) {
-      if (err.response) {
-        setError(err.response.data.message || 'An error occurred while processing your request.');
-      } else if (err.request) {
-        setError('Network error. Please check your internet connection.');
-      } else {
-        setError('Unexpected error. Please try again later.');
+      } catch (err) {
+        if (err.response) {
+          setError(err.response.data.message || 'An error occurred while processing your request.');
+        } else if (err.request) {
+          setError('Network error. Please check your internet connection.');
+        } else {
+          setError('Unexpected error. Please try again later.');
+        }
       }
     }
-  };
 
+    else{
+           alert('A session is already active, Logout and try again!')
+    }
+
+  };
+  useEffect(() => {
+    const userData = (localStorage.getItem('role')); // or get from context/api
+    console.log('inside use effect');
+    console.log(userData);
+    if (userData) {
+      // ✅ Redirect to role-specific page
+      switch (userData) {
+        case 'Admin':
+          navigate('/admin-dashboard');
+          break;
+        case 'Doctor':
+          navigate('/doctor-dashboard');
+          break;
+        default:
+          navigate('/'); // fallback or error route
+      }
+    }
+    // else, allow login form to be shown
+  }, [navigate]);
   return (
     <div className="login-container">
         <div className="center-container">

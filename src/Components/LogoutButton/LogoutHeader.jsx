@@ -23,7 +23,12 @@ const Header = () => {
         setError('');  // Reset error state if logout is successful
         localStorage.removeItem('access_token');
         localStorage.removeItem('refresh');
-        navigate('/');
+        localStorage.removeItem('role');
+        localStorage.removeItem('FollowUpCount');
+        localStorage.removeItem('CrNo');
+        localStorage.removeItem('Count');
+        localStorage.removeItem('username');
+        navigate('/',{ replace: true });
       } else {
         setError('Logout failed. Please try again.');
       }
