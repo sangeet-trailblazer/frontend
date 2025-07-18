@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { User,UserCircle, Activity, Droplets, History, Pencil, Save, DotIcon } from 'lucide-react';
+import axios from 'axios'; // Import axios for making HTTP requests
+import { format } from 'date-fns';
+import { Activity, DotIcon, Droplets, History, Pencil, Save, User } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import DashboardCard from './DashboardCard';
 import './PatientDashboardstyle.css';
-import axios from 'axios';  // Import axios for making HTTP requests
-import { useParams } from 'react-router-dom';
-import { format } from 'date-fns'; 
 
 
  function PatientDashboard({toggleSidePanel,setPatientParagraph }) {

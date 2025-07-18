@@ -1,10 +1,10 @@
 // Adding New patient to the physio department 
-import React, { useEffect,useState } from 'react';
+import axios from 'axios';
 import { X } from 'lucide-react';
 import PropTypes from 'prop-types';
-import '../../styles/forms.css';
+import React, { useEffect, useState } from 'react';
 import config from '../../Config';
-import axios from 'axios';
+import '../../styles/forms.css';
 
 const AddPatients = ({ onClose = () => {} }) => {
   const currentDate = new Date().toISOString().split('T')[0];

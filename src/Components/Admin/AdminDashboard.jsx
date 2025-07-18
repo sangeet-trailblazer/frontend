@@ -1,14 +1,14 @@
-import React, { useEffect,useState } from 'react';
-import { Settings, Users, BarChart } from 'lucide-react';
+import { BarChart, Users } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DashboardCard from '../../styles/DashboardCard';
+import Footer from '../Footer/Footer';
 import UserManagementForm from '../Forms/AddDoctor';
 import AddPatients from '../Forms/AddNewPatient';
 import AddOldPatients from '../Forms/AddOldPatient';
-import './Admin.css';
 import Header from '../LogoutButton/LogoutHeader';
-import Footer from '../Footer/Footer';
 import WelcomePage from '../WelcomeName/Name';
-import { useNavigate } from 'react-router-dom';
+import './Admin.css';
 
 const AdminDashboard = () => {
   const [showUserManagement, setShowUserManagement] = useState(false);

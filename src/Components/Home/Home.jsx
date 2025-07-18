@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Search,Plus,LogOut } from 'lucide-react';
-import './Home.css';
-import axiosInstance from '../Interceptor';
-import PatientForm from '../AddPatient/PatientForm'; // Import your patient form component (to be created)
-import PatientGrid from '../AddPatient/PatientGrid'; 
-import '../AddPatient/PatientStyle.css';
 import axios from 'axios';
-import Header from '../LogoutButton/LogoutHeader';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PatientGrid from '../AddPatient/PatientGrid';
+import '../AddPatient/PatientStyle.css';
 import Footer from '../Footer/Footer';
+import Header from '../LogoutButton/LogoutHeader';
+import './Home.css';
 // import { getBaseUrl } from '../config';
 // function Dashboard() {
 //   const [loading, setLoading] = useState(true);  // Add loading state

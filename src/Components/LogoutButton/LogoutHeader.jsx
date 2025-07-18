@@ -1,8 +1,9 @@
 // Header.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Header.css';
 import axiosInstance from '../Interceptor';
+import './Header.css';
+
 const Header = () => {
   const [error, setError] = useState('');
   const [user, setUser] = useState(null);
@@ -44,6 +45,12 @@ const Header = () => {
       <button onClick={handleLogout} className="logout-button">
         Logout
       </button>
+      <button
+      onClick={() => navigate('/change-password')}
+      className="logout-button"
+    >
+      Change Password
+    </button>
       </div>
     </header>
   );

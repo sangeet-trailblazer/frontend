@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import axios from 'axios';
 import { X } from 'lucide-react';
 import PropTypes from 'prop-types';
-import '../../styles/forms.css';
+import React, { useState } from 'react';
 import config from '../../Config';
-import axios from 'axios';  
-import Modal from '../../styles/AlertBox';
+import '../../styles/forms.css';
 
 
 // THIS FORM IS TO ADD USER

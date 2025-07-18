@@ -7,7 +7,7 @@
   background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
   padding: clamp(16px, 5vw, 40px);
 }
-
+/*Box Design*/
 .login-box {
   background: rgba(255, 255, 255, 0.97);
   border-radius: clamp(12px, 3vw, 16px);
@@ -15,19 +15,19 @@
   width: min(100%, 400px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
-
+/*Heading*/
 .login-header {
   text-align: center;
   margin-bottom: clamp(24px, 5vw, 32px);
 }
-
+/*Welcome back*/
 .login-header h1 {
   color: #1a1a1a;
   font-size: clamp(24px, 5vw, 28px);
   margin-bottom: clamp(6px, 2vw, 8px);
   line-height: 1.2;
 }
-
+/*Please sign in to Continue*/
 .login-header p {
   color: #666;
   font-size: clamp(14px, 3vw, 16px);
@@ -37,7 +37,7 @@
   margin-bottom: clamp(20px, 4vw, 24px);
   position: relative;
 }
-
+/*Inside the Boxes*/
 .form-group label {
   display: block;
   margin-bottom: clamp(6px, 2vw, 8px);
@@ -74,7 +74,7 @@
   border-color: #4b6cb7;
   box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.1);
 }
-
+/*Login Button*/
 .login-button {
   width: 100%;
   padding: clamp(12px, 2.5vw, 14px);
@@ -91,7 +91,7 @@
   justify-content: center;
   gap: 8px;
 }
-
+/*hover effect*/
 .login-button:hover {
   background: #3b5998;
 }

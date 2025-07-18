@@ -1,5 +1,4 @@
 import axios from 'axios';
-// const baseURL = 'https://ai-backend-owov.onrender.com';
 const baseURL = 'http://127.0.0.1:8000';
 // Create an Axios instance
 const axiosInstance = axios.create({
@@ -11,12 +10,37 @@ const axiosInstance = axios.create({
 
 // Request Interceptor: Add access token to headers before each request
 axiosInstance.interceptors.request.use(
-  async (config) => {
+    (config) => {
     // Get the access token from localStorage
     const accessToken = localStorage.getItem('access_token');
     if (accessToken) {
       // Attach the token to the request header
       config.headers['Authorization'] = `Bearer ${accessToken}`;
+      /*axiosInstance.interceptors.request.use(
+        (config) => {
+          const accessToken = localStorage.getItem('access_token');
+          if (accessToken) {
+            config.headers['Authorization'] = `Bearer ${accessToken}`;
+          }
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );*/
+    
+/*axiosInstance.interceptors.request.use(
+  (config) => {
+    const accessToken = localStorage.getItem('access_token');
+    if (accessToken) {
+      config.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);*/
+
+      
     }
 
     return config;
@@ -25,6 +49,7 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
 
 // Response Interceptor: Handle token expiration and refresh the token
 axiosInstance.interceptors.response.use(
@@ -41,7 +66,7 @@ axiosInstance.interceptors.response.use(
       console.log(refreshToken);
       if (refreshToken) {
         try {
-          const refreshResponse = await axios.post('http://127.0.0.1:8000/token/refresh/', {refresh: refreshToken });
+          const refreshResponse = await axios.post('http://127.0.0.1:8000/api/token/refresh/', {refresh: refreshToken });
           console.log(refreshResponse);
           if (refreshResponse.status === 200) {
             const newAccessToken = refreshResponse.data.access;
@@ -51,7 +76,7 @@ axiosInstance.interceptors.response.use(
             // Set the new access token in the original request and retry it
             
             
-            console.log('New access and refreesh tokens');
+            console.log('New access and refresh tokens');
             console.log(newAccessToken);
             console.log(newRefreshToken);
             // localStorage.removeItem('access_token');

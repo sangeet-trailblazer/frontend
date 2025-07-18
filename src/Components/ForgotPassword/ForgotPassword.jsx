@@ -1,72 +1,154 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Mail, ArrowLeft, Send } from 'lucide-react';
 import './ForgotPassword.css';
 
-function ForgotPassword() {
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-  const navigate = useNavigate();
+const ForgotPassword = () => {
+  const [step, setStep] = useState(1);
+  const [username, setUsername] = useState('');
+  const [phone, setPhone] = useState('');
+  const [otp, setOtp] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSendOtp = async () => {
+    try {
+      await axios.post('http://localhost:8000/api/send-otp/', {
+        username,
+        phone,
+        step: 'send_otp',
+      });
+      setMessage('OTP sent to your phone!');
+      setStep(2);
+    } catch (error) {
+      setMessage(
+        error.response?.data?.error || 'Failed to send OTP. Check username and phone.'
+      );
+    }
+  };
+
+  const handleVerifyOtp = async () => {
+    try {
+      const response = await axios.post('http://localhost:8000/api/verify-otp/', {
+        username,
+        otp,
+        step: 'verify_otp',
+      });
+
+      if (response.data.message === 'OTP verified') {
+        setMessage('OTP verified. Please enter your new password.');
+        setStep(3);
+      } else {
+        setMessage('Invalid OTP.');
+      }
+    } catch (error) {
+      setMessage(
+        error.response?.data?.error || 'Incorrect or expired OTP. Please try again.'
+      );
+    }
+  };
+
+  const handleResetPassword = async () => {
+    if (newPassword !== confirmPassword) {
+      setMessage('Passwords do not match.');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/reset-password/', {
+        username,
+        new_password: newPassword,
+        confirm_password: confirmPassword,
+        step: 'reset_password',
+      });
+
+      if (response.data.message === 'Password reset successful') {
+        setMessage('Password reset successfully! Please log in again.');
+        setUsername('');
+        setPhone('');
+        setOtp('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setStep(1);
+      } else {
+        setMessage('Password reset failed.');
+      }
+    } catch (error) {
+      setMessage(
+        error.response?.data?.error || 'Failed to reset password. Try again.'
+      );
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email) {
-      setError('Please enter your email address');
-      return;
-    }
-    // In a real app, you would send a password reset email here
-    setError('');
-    setSuccess(true);
-    setTimeout(() => {
-      navigate('/');
-    }, 3000);
+    if (step === 1) handleSendOtp();
+    else if (step === 2) handleVerifyOtp();
+    else if (step === 3) handleResetPassword();
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <div className="login-header">
-          <h1>Reset Password</h1>
-          <p>Enter your email to receive reset instructions</p>
-        </div>
-        
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
-            <div className="input-wrapper">
-              {/* <Mail size={20} /> */}
-              <input
-                id="email"
-                type="email"
-                className="form-control"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-          </div>
+    <div className="forgot-password-wrapper">
+      <div className="forgot-password-container">
+        <h2>Forgot Password</h2>
 
-          {error && <div className="error-message">{error}</div>}
-          {success && (
-            <div className="success-message">
-              Reset instructions have been sent to your email. Redirecting...
-            </div>
+        <form onSubmit={handleSubmit}>
+          {step === 1 && (
+            <>
+              <input
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Enter your registered phone number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              <p className="hint">
+                Use 10-digit mobile number only. We'll add +91 automatically.
+              </p>
+              <button type="submit">Send OTP</button>
+            </>
           )}
 
-          <button type="submit" className="login-button" disabled={success}>
-            Send Reset Link
-            <Send size={20} />
-          </button>
+          {step === 2 && (
+            <>
+              <input
+                type="text"
+                placeholder="Enter OTP"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+              />
+              <button type="submit">Verify OTP</button>
+            </>
+          )}
+
+          {step === 3 && (
+            <>
+              <input
+                type="password"
+                placeholder="New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Confirm New Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <button type="submit">Reset Password</button>
+            </>
+          )}
         </form>
 
-        <Link to="/" className="reset-password">
-          <ArrowLeft size={16} className="inline mr-1" />
-          Back to Login
-        </Link>
+        {message && <p className="message">{message}</p>}
       </div>
     </div>
   );
-}
+};
 
 export default ForgotPassword;
